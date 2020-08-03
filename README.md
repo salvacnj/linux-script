@@ -36,3 +36,9 @@ Add mqtt
 ```
 wget -O - https://raw.githubusercontent.com/salvacnj/linux-script/master/mqtt.sh | bash <(cat) </dev/tty
 ```
+
+Add noble 
+
+```
+wget -O - https://raw.githubusercontent.com/salvacnj/linux-script/master/noble.sh | bash <(cat) </dev/tty
+```
