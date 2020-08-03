@@ -44,13 +44,13 @@ function handlerSYS(topic,message){
 " >> index.js
 
 echo "
-MQTT_HOST='background2.staging.nazaries.cloud'
+MQTT_HOST=''
 MQTT_PORT=1883
 MQTT_OPTIONS={
     clean: true,
     clientId: 'mqtt-id',
     keepalive: 6000, 
-    username: 'nazaries',
-    password: Buffer.from('mqtt_nazaries'), 
+    username: '',
+    password: Buffer.from(''), 
 }
 " >> .env 
