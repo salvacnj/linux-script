@@ -7,6 +7,8 @@ echo "#####################################
     By: Salvador Fco Criado Melero
 ###########################################"
 
+
+nvm use lts/carbon
 sudo apt-get install bluetooth bluez libbluetooth-dev libudev-dev
 npm install noble
 
