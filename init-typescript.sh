@@ -54,16 +54,20 @@ touch .env
 echo "
 require('dotenv').config({ path: \`\${__dirname}/../.env\`});
 
+import * as dotenv from "dotenv";
 import * as express from "express";
+
+dotenv.config({ path: `${__dirname}/../.env`});
+
 
 const app = express();
 
-app.get("/", (req, res) => {    
-  res.send("Hello World")
+app.get('/', (req, res) => {    
+  res.send('Hello World')
 });
 
 const PORT = process.env.PORT || 3000;app.listen(PORT, () => {     
-  console.log(`Server is running in http://localhost:${PORT}`)
+  console.log(\`Server is running in http://localhost:${PORT}\`)
 });
 
 
