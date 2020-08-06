@@ -54,8 +54,8 @@ touch .env
 echo "
 require('dotenv').config({ path: \`\${__dirname}/../.env\`});
 
-import * as dotenv from "dotenv";
-import * as express from "express";
+import * as dotenv from 'dotenv';
+import * as express from '@types/express';
 
 dotenv.config({ path: `${__dirname}/../.env`});
 
