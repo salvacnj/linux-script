@@ -25,11 +25,6 @@ wget -O - https://raw.githubusercontent.com/salvacnj/linux-script/master/init.sh
 ```
 
 
-Init typescript node js application 
-
-```
-wget -O - https://raw.githubusercontent.com/salvacnj/linux-script/master/init-typescript.sh | bash <(cat) </dev/tty
-```
 
 
 Add mongoose 
@@ -49,4 +44,41 @@ Add noble
 
 ```
 wget -O - https://raw.githubusercontent.com/salvacnj/linux-script/master/noble.sh | bash <(cat) </dev/tty
+```
+
+
+### Typescript node js
+
+Init typescript node js application 
+
+```
+wget -O - https://raw.githubusercontent.com/salvacnj/linux-script/master/init-typescript.sh | bash <(cat) </dev/tty
+```
+
+Add to package.json 
+
+```
+{
+  ....
+ "scripts": {
+    "start": "node --inspect=5858 -r ts-node/register ./src/server.ts",
+    "start:watch": "nodemon",
+    "build": "tsc"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "**/*.test.ts",
+      "**/*.spec.ts",
+      ".git",
+      "node_modules"
+    ],
+    "watch": [
+      "src"
+    ],
+    "exec": "npm start",
+    "ext": "ts"
+  },
+  ......
+}
+
 ```
