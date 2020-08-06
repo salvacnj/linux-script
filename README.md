@@ -25,6 +25,13 @@ wget -O - https://raw.githubusercontent.com/salvacnj/linux-script/master/init.sh
 ```
 
 
+Init typescript node js application 
+
+```
+wget -O - https://raw.githubusercontent.com/salvacnj/linux-script/master/init-typescript.sh | bash <(cat) </dev/tty
+```
+
+
 Add mongoose 
 
 ```
@@ -36,6 +43,7 @@ Add mqtt
 ```
 wget -O - https://raw.githubusercontent.com/salvacnj/linux-script/master/mqtt.sh | bash <(cat) </dev/tty
 ```
+
 
 Add noble 
 
