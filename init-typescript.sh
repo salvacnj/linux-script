@@ -82,4 +82,19 @@ echo '{
     "debug.node.autoAttach": "off"
 }' >> .vscode/settings.json
 
+
+# TS COMPILE OPTIONS
+touch tsconfig.json
+
+echo '{
+    "compilerOptions": {
+        "target": "es6",
+        "module": "commonjs",
+        "outDir": "dist",
+        "sourceMap": true
+    },
+    "include": ["src/**/*.ts"],
+    "exclude": ["node_modules", ".vscode"]
+}' >> ./tsconfig.json
+
 code .
