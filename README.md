@@ -60,6 +60,7 @@ Add to package.json
 ```
 {
   ....
+  
  "scripts": {
     "start": "node --inspect=5858 -r ts-node/register ./src/server.ts",
     "start:watch": "nodemon",
@@ -77,7 +78,7 @@ Add to package.json
     ],
     "exec": "npm start",
     "ext": "ts"
-  },
+  }
   ......
 }
 
