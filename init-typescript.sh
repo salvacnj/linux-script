@@ -53,9 +53,9 @@ touch .env
 #INDEX.js
 echo "
 import * as dotenv from 'dotenv';
-import * as express from '@types/express';
+import * as express from 'express';
 
-dotenv.config({ path: `${__dirname}/../.env`});
+dotenv.config({ path: \`${__dirname}/../.env\`});
 
 
 const app = express();
