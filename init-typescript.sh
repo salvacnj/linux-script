@@ -38,7 +38,11 @@ Copyright (C) ["$year"] [copyright Salvador Fco Criado Melero] " >> ./README.md
 touch .gitignore
 echo "node_modules
 *.js
-!_*.js" >> ./.gitignore
+!_*.js
+
+dist
+
+" >> ./.gitignore
 
 
 echo "
