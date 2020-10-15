@@ -15,13 +15,8 @@ mkdir -p $project_name && cd $project_name
 npm init
 mkdir src && touch src/server.ts
 
-
 # PACKETs FOR AUTOLOAD ON SAVE AND ATTACHT DEBUG
-npm install @types/express --save
-npm install --save-dev typescript @types/node eslint eslint-plugin-import nodemon ts-node
-
-# TOOLS
-npm install dotenv utils-nodejs-scr
+npm install --save-dev typescript @types/node eslint eslint-plugin-import nodemon ts-node dotenv utils-nodejs-scr
 
 # INITIALIZE README
 touch README.md
@@ -37,7 +32,6 @@ echo "# "$project_name"
 -------
 Copyright (C) ["$year"] [copyright Salvador Fco Criado Melero] " >> ./README.md
 
-
 # CREATE FOLDER STRUCTURE
 
 # .gitignore
@@ -46,6 +40,21 @@ echo "node_modules
 *.js
 !_*.js" >> ./.gitignore
 
+
+echo "
+
+tsconfig.json
+.travis.yml
+.nojekyll
+src/
+docs/
+dist/test/
+.npmignore
+
+// npm pack
+{YOUR_LIB}-*.tgz
+" >> ./.npmignore
+
 #.dot
 touch .env
 
@@ -53,36 +62,56 @@ touch .env
 #INDEX.js
 echo "
 import * as dotenv from 'dotenv';
-import * as express from 'express';
 
 dotenv.config({ path: \`${__dirname}/../.env\`});
-
-
-const app = express();
-
-app.get('/', (req, res) => {    
-  res.send('Hello World')
-});
-
-const PORT = process.env.PORT || 3000;app.listen(PORT, () => {     
-  console.log(\`Server is running in http://localhost:${PORT}\`)
-});
-
-
+console.log(\`Server is running \`);
 " >> ./src/server.ts
 
 
 # VSCODE CONFIG
 mkdir .vscode && touch .vscode/settings.json
 
-echo '{
-    "files.exclude": {
-        "**/*.js": { "when": "$(basename).ts" },
-        "**/**.js": { "when": "$(basename).tsx" },
-        "**/*.js.map": { "when": "$(basename)" }
-    },
-    "debug.node.autoAttach": "off"
-}' >> .vscode/settings.json
+echo '
+
+{
+  "editor.rulers": [
+    80
+  ],
+  "editor.tabCompletion": "on",
+  "editor.tabSize": 2,
+  "editor.trimAutoWhitespace": true,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true,
+    "source.fixAll.eslint": true
+  },
+  "files.exclude": {
+    "**/.DS_Store": true,
+    "**/.git": true,
+    "**/.hg": true,
+    "**/.svn": true,
+    "**/CVS": true,
+    "dist": false
+  },
+  "[typescript]": {
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": false
+    }
+  },
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "typescript.tsdk": "./node_modules/typescript/lib",
+  "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": false,
+  "typescript.preferences.quoteStyle": "single",
+  "eslint.run": "onSave",
+  "eslint.nodePath": "./node_modules",
+  "eslint.validate": [
+    "javascript",
+    "typescript"
+  ],
+  "debug.node.autoAttach": "off"
+}
+' >> .vscode/settings.json
 
 
 # TS COMPILE OPTIONS
