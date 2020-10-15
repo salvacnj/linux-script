@@ -64,6 +64,30 @@ require('dotenv').config({ path: \`\${__dirname}/.env\`});
 console.log('Hello world! To test the script run nodemon start.js');
 " >> ./index.js
 
+mkdir helpers models test controllers
+
+touch helpers/utils.js
+
+echo "
+
+module.exports = function walkSync(dir){
+  let files = fs.readdirSync(dir);
+  let fileList = [];
+
+  files.forEach(function (file) {
+    if (fs.statSync(dir + '/' + file).isDirectory()) {
+      fileList = fileList.concat(walkSync(dir + '/' + file), fileList);
+    }
+    else {
+      if (file !== 'index.js' && file !== 'index.ts')
+        fileList.push(dir + '/' + file);
+    }
+  });
+  return fileList;
+};
+
+" >> ./helpers/utils.js
+
 
 code .
 
