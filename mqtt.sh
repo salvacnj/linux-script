@@ -35,7 +35,7 @@ class mqtt extends require('mqtt-extension') {
 	}
 }
 
-mqttBroker = new mqtt (process.env.MQTT_HOST, process.env.MQTT_PORT, process.env.MQTT_OPTIONS).init();
+let mqttBroker = new mqtt (process.env.MQTT_HOST, process.env.MQTT_PORT, process.env.MQTT_OPTIONS).init();
 
 
 function handlerSYS(topic,message){
