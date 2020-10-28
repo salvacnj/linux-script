@@ -63,13 +63,13 @@ dist/test/
 touch .env
 
 
-#INDEX.js
+#MAIN.js
 echo "
 import * as dotenv from 'dotenv';
 
 dotenv.config({ path: \`${__dirname}/../.env\`});
 console.log(\`Server is running \`);
-" >> ./src/server.ts
+" >> ./src/main.ts
 
 
 # VSCODE CONFIG
