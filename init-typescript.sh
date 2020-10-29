@@ -13,7 +13,7 @@ mkdir -p $project_name && cd $project_name
 
 # INITIALIZE NPM AND TOOLS
 npm init
-mkdir src && touch src/server.ts
+mkdir src
 
 # PACKETs FOR AUTOLOAD ON SAVE AND ATTACHT DEBUG
 npm install --save-dev typescript @types/node eslint eslint-plugin-import nodemon ts-node dotenv utils-nodejs-scr
