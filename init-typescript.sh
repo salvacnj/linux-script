@@ -148,4 +148,53 @@ echo '{
   "ext": "ts"
 }' >> ./nodemon.json 
 
+touch ecosystem.config.yaml
+echo '
+apps:
+  - script   : ./src/main.ts
+    name     : 'adetem-mqtt-to-mongodb'
+    #instances: max
+    #exec_mode: cluster
+    #max_memory_restart: 1G
+    watch: ["src"]
+    watch_delay: 1000
+    ignore_watch : ["node_modules", "client/img"]
+    interpreter: ts-node
+    error_file: /dev/null
+    out_file: /dev/null
+    time: true
+    interpreter: ts-node
+    env:
+      NODE_ENV: development
+    env_staging:
+      NODE_ENV: staging
+    env_production:
+      NODE_ENV: production
+deploy:
+  staging:
+    host: etl.staging.nazaries.cloud
+    user: centos
+    #key: ~/.ssh/custom_key
+    path: /home/centos/node-apps/adetem-mqtt-to-mongodb
+    repo: git@bitbucket.org:salvador_criado/adetem-mqtt-to-mongodb.git
+    ref: origin/develop
+    pre-setup: pm2 install typescript
+    post-setup: npm install
+    pre-deploy-local: scp env/staging.env centos@etl.staging.nazaries.cloud:'/home/centos/node-apps/adetem-mqtt-to-mongodb/source/env'
+    pre-deploy: git pull
+    post-deploy: npm update && pm2 startOrRestart ecosystem.config.yaml --env staging && pm2 log
+  production:
+    host: etl.nazaries.cloud
+    user: centos
+    #key: ~/.ssh/custom_key
+    path: /home/centos/node-apps/adetem-mqtt-to-mongodb
+    repo: git@bitbucket.org:salvador_criado/adetem-mqtt-to-mongodb.git
+    ref: origin/master
+    pre-setup: pm2 install typescript
+    post-setup: npm install
+    pre-deploy-local: scp env/production.env centos@etl.production.nazaries.cloud:'/home/centos/node-apps/adetem-mqtt-to-mongodb/source/env'
+    pre-deploy: git pull
+    post-deploy: npm update && pm2 startOrRestart ecosystem.config.yaml --env production && pm2 log
+' >> ./ecosystem.config.yaml
+
 code .
