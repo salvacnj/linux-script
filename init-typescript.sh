@@ -132,5 +132,20 @@ echo '{
     "exclude": ["node_modules", ".vscode"]
 }' >> ./tsconfig.json
 
+# Nodemon 
+touch nodemon.json 
+echo '{
+  "ignore": [
+    "**/*.test.ts",
+    "**/*.spec.ts",
+    ".git",
+    "node_modules"
+  ],
+  "watch": [
+    "src"
+  ],
+  "exec": "npm start",
+  "ext": "ts"
+}' >> ./nodemon.json 
 
 code .
